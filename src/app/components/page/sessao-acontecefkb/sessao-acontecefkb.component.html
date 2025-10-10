@@ -1,0 +1,17 @@
+<section class="container d-flex align-items-center flex-column mt-5">
+  <h1>ACONTECE AQUI NA FKB</h1>
+
+  <!-- <div class="container m-4">
+        <div class="gallery d-flex justify-content-between container">
+          <app-image-gallery context="post" [fetchAll]="true"></app-image-gallery>
+        </div>
+      </div> -->
+  <div class="cont">
+    <div class="gallery">
+      <img *ngFor="let image of imageArray" [src]="image" alt="Imagem">
+    </div>
+    <div class="gallery-right">
+      <img *ngFor="let image of secondImageArray" [src]="image" alt="Imagem">
+    </div>
+  </div>
+</section>

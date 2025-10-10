@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white text-center">
+      <h2>Cadastrar Novo Usuário</h2>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="register()">
+        <div class="mb-3">
+          <label for="username" class="form-label">Nome de Usuário:</label>
+          <input type="text" id="username" [(ngModel)]="username" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Senha:</label>
+          <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="role" class="form-label">Papel:</label>
+          <select id="role" [(ngModel)]="role" name="role" class="form-select" required>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+          </select>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

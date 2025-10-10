@@ -1,0 +1,27 @@
+
+<div class="container position-relative mt-5">
+  <div class="d-flex justify-content-between">
+    <h2 class="mb-3">Posts Recentes</h2>
+    <a
+      href="https://www.instagram.com/faculdades_fkb/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn btn-outline-success d-flex align-items-center"
+    >
+      Ver Todos
+    </a>
+
+  </div>
+  <!-- Botão Esquerdo -->
+  <button class="scroll-btn scroll-left" (click)="scrollLeft()">←</button>
+
+  <!-- Carrossel -->
+  <div #scrollContainer class="post-wrapper no-scrollbar">
+    <div *ngFor="let post of posts" class="post-card">
+      <div [innerHTML]="post.embedCode"></div>
+    </div>
+  </div>
+
+  <!-- Botão Direito -->
+  <button class="scroll-btn scroll-right" (click)="scrollRight()">→</button>
+</div>

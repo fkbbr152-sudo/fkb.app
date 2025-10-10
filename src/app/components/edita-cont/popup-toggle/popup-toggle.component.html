@@ -1,0 +1,22 @@
+<div class="app-container">
+  <div class="cont">
+
+    <div class="popup-config-container">
+      <h1>Ativar e Desativar o PopUp</h1>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="popupToggle"
+          [(ngModel)]="popupState"
+          (change)="togglePopup()"
+          />
+        <label class="form-check-label" for="popupToggle">
+          {{ popupState ? 'Popup Ativo' : 'Popup Inativo' }}
+        </label>
+      </div>
+    </div>
+          <app-image-upload context="popup"></app-image-upload>
+  </div>
+        <app-image-gallery context="popup"></app-image-gallery>
+</div>

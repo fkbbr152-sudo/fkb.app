@@ -1,0 +1,7 @@
+<div class="container mt-4" *ngIf="article">
+  <h2>{{ article.title }}</h2>
+  <img [src]="article.image_url" class="img-fluid mb-3" alt="{{ article.title }}">
+  <p><small class="text-muted">{{ article.createdAt | date: 'mediumDate' }}</small></p>
+  <div [innerHTML]="article.content"></div>
+  <a href="/blog" class="btn btn-secondary mt-3">Voltar</a>
+</div>

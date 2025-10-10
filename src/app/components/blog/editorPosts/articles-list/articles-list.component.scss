@@ -1,0 +1,57 @@
+img{
+    height: 300px;
+}
+.scroll-container {
+  position: relative;
+
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth; /* Faz o scroll suave */
+  padding-bottom: 10px;
+  width: 100vw;
+  -ms-overflow-style: none;  /* Esconde a barra de rolagem no IE */
+  scrollbar-width: none;  /* Esconde a barra de rolagem no Firefox */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;  /* Esconde a barra de rolagem no Chrome, Safari e Edge */
+}
+
+.row.flex-row {
+  display: flex;
+  flex-wrap: nowrap; /* Garante que os itens não quebrem para a linha seguinte */
+}
+.article{
+  position: relative;
+}
+.button-container {
+  position: absolute;
+  top: calc(50% - 25px);
+  width: 100%;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alinha os botões nas extremidades */
+  transform: translateY(-50%); /* Centraliza verticalmente */
+  padding: 0 10px; /* Espaçamento nas laterais */
+}
+
+.scroll-btn {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.scroll-btn:hover {
+  background-color: #007bff;
+  color: white;
+  border-color: #0056b3;
+}

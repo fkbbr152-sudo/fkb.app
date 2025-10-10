@@ -1,0 +1,67 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="m-4">
+
+            <h2>Cadastro de Curso</h2>
+            <p class="text-muted">Preencha os dados abaixo para registrar um novo curso.</p>
+            <hr class="mb-4">
+
+            <form (ngSubmit)="saveCourse()">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Título</label>
+                    <input id="title" class="form-control" [(ngModel)]="course.title" name="title" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tipo-categoria" class="form-label">Tipo</label>
+                    <select id="tipo-categoria" class="form-select" [(ngModel)]="course.categoria" name="categoria"
+                        required>
+                        <option value="graduacao">Graduação</option>
+                        <option value="pos">Pós-graduação</option>
+                        <option value="tecnico">Técnico</option>
+                    </select>
+                </div>
+
+                <hr class="my-4">
+                <h5>Imagem do Curso</h5>
+                <app-image-upload context="imagecourse"></app-image-upload>
+                <hr class="my-4">
+                <h5>Icone do Curso</h5>
+                <app-image-upload context="iconecourse"></app-image-upload>
+
+                <hr class="my-4">
+                <h5>Links do Curso</h5>
+                <!-- <div class="mb-3">
+          <div class="input-group mb-2">
+            <input class="form-control" placeholder="Texto do Link" [(ngModel)]="newLink.text" name="linkText">
+            <input class="form-control" placeholder="URL do Link" [(ngModel)]="newLink.url" name="linkUrl">
+            <button class="btn btn-primary" type="button" (click)="addLink()">Adicionar Link</button>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let link of course.links; let i = index">
+              <span>
+                {{ link.text }} - <small class="text-muted">{{ link.url }}</small>
+              </span>
+              <button class="btn btn-danger btn-sm" type="button" (click)="removeLink(i)">Remover</button>
+            </li>
+          </ul>
+        </div> -->
+                <app-image-upload context="arqcourse"></app-image-upload>
+
+                <div *ngIf="successMessage" class="alert alert-success mt-4">
+                    {{ successMessage }}
+                </div>
+                <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+                    {{ errorMessage }}
+                </div>
+
+                <hr class="my-4">
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-secondary" (click)="resetForm()">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Salvar Curso</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

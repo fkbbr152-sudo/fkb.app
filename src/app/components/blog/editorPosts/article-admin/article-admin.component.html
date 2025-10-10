@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <h2>Gerenciar Artigos</h2>
+  <button class="btn btn-success mb-3" (click)="novo()">Novo Artigo</button>
+
+  <table class="table table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Título</th>
+        <th>Resumo</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let article of articles">
+        <td>{{ article.title }}</td>
+        <td>{{ article.summary }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm me-2" (click)="editar(article)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="excluir(article.id)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="selectedArticle" class="card mt-4">
+    <div class="card-body">
+      <h5>{{ selectedArticle.id ? 'Editar Artigo' : 'Novo Artigo' }}</h5>
+      <form (ngSubmit)="salvar()">
+        <div class="mb-3">
+          <label class="form-label">Título</label>
+          <input type="text" class="form-control" [(ngModel)]="selectedArticle.title" name="title">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Resumo</label>
+          <textarea class="form-control" [(ngModel)]="selectedArticle.summary" name="summary"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Imagem URL</label>
+          <input type="text" class="form-control" [(ngModel)]="selectedArticle.image_url" name="image_url">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Conteúdo</label>
+          <textarea class="form-control" rows="5" [(ngModel)]="selectedArticle.content" name="content"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="cancelar()">Cancelar</button>
+      </form>
+    </div>
+  </div>
+</div>

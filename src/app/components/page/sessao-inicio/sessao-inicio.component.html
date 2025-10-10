@@ -1,0 +1,29 @@
+<app-popup></app-popup>
+<!-- <section class="container-fluid bg-img" [ngStyle]="{'background-image': backgroundUrl ? 'url(' + backgroundUrl + ')' : 'none'}">
+    <div class=" sub-menu col-12 col-lg-5">
+        <p>Horário de Funcionamento : 13:30 às 17:00 e das 18:30 às 22:00
+            Segunda à Sexta-feira
+        </p>
+        <h2>Vestibular 1º Semestre 2025</h2>
+        
+    </div>
+</section> -->
+
+<section class="hero">
+    <!-- Vídeo -->
+    <video *ngIf="!showFallback" #videoEl autoplay muted loop playsinline preload="auto"
+        [poster]="'assets/img/poster.jpg'" controlslist="nodownload nofullscreen noremoteplayback"
+        disablepictureinpicture>
+        <source src="CAPA.mp4" type="video/mp4" />
+        <!-- <source src="hero.webm" type="video/webm" /> -->
+        Seu navegador não suporta vídeos HTML5.
+    </video>
+
+    <!-- Fallback -->
+    <img *ngIf="showFallback" src="poster.png" alt="Hero" class="hero-fallback" />
+
+    <!-- Overlay de conteúdo -->
+    <div class="overlay">
+        <app-button-list></app-button-list>
+    </div>
+</section>

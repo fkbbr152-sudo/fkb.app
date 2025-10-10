@@ -1,0 +1,28 @@
+<div class="upload-container">
+  <h2>Mudar a imagem</h2>
+  <div
+    class="drop-zone"
+    [class.drag-over]="isDragOver"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+    (click)="triggerFileInput()"
+  >
+    <p *ngIf="!selectedFile">Arraste e solte o arquivo aqui ou clique para selecionar</p>
+    <p *ngIf="selectedFile" class="file-selected">Arquivo selecionado: {{ fileName }}</p>
+    <input
+      #fileInput
+      type="file"
+      class="file-input"
+      (change)="onFileSelected($event)"
+      accept=".jpg,.jpeg,.png,.gif,.svg"
+    />
+  </div>
+  <button
+    class="submit-btn"
+    [disabled]="!selectedFile"
+    (click)="onSubmit()"
+  >
+    Enviar
+  </button>
+</div>

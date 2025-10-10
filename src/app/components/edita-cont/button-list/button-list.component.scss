@@ -1,0 +1,29 @@
+/* button-list.component.css */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+  }
+  
+  .btn_submit_cad {
+    background-color: #08558B;
+    width: 20vw;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: calc(1.5vw /2);
+  }
+  
+  .btn_submit_cad:hover {
+    background-color: #0056b3;
+  }
+
+  @media screen and (max-width: 599px) {
+    .btn_submit_cad[type="submit"]{
+        min-width: 280px;
+        font-size: 0.6rem;
+    }
+  }

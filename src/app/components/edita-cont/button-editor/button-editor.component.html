@@ -1,0 +1,24 @@
+<!-- button-editor.component.html -->
+<div class="editor-container">
+  <h2>Gerenciamento de Botões</h2>
+
+  <!-- Lista de botões -->
+  <div class="button-list">
+    <div *ngFor="let button of buttons" class="button-item">
+      <div class="button-info">
+        <span class="button-preview">{{ button.text }}</span>
+        <span class="button-link">{{ button.link }}</span>
+      </div>
+
+      <div class="button-actions">
+        <i class="fas fa-edit" (click)="openEditDialog(button)" title="Editar"></i>
+        <i class="fas fa-trash-alt" (click)="confirmDelete(button.id)" title="Excluir"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão para adicionar novo -->
+  <button class="btn-add" (click)="openAddDialog()">
+    <i class="fas fa-plus-circle"></i> Novo Botão
+  </button>
+</div>

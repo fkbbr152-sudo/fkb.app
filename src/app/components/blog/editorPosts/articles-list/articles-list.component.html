@@ -1,0 +1,23 @@
+<div class="container article mt-4">
+  <h2 class="mt-5 mb-5">Artigos Recentes</h2>
+  <div class="container scroll-container">
+    <div class="row flex-row">
+      <div class="col-md-4 mb-4" *ngFor="let article of articles">
+        <div class="card h-100 d-flex flex-column">
+          <img [src]="article.image_url" class="card-img-top" alt="{{ article.title }}">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <p class="card-text flex-grow-1">{{ article.summary }}</p>
+            <a [routerLink]="['/artigos', article.id]" class="btn btn-primary btn-sm align-self-start">
+              Leia Mais
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container button-container p-lg-3">
+    <button class="scroll-btn left-btn" (click)="scrollToLeft()">←</button>
+    <button class="scroll-btn right-btn" (click)="scrollToRight()">→</button>
+  </div>
+</div>

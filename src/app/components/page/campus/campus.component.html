@@ -1,0 +1,17 @@
+<section class="container-fluid mb-5 mt-5 p-5 bg-campus">
+  <h1>CONHEÇA NOSSO CAMPUS</h1>
+  <p class="intro">Explore cada canto do nosso campus, feito para acolher, inspirar e transformar.</p>
+
+  <div class="gallery">
+
+    <div class="gallery-item"
+         *ngFor="let item of items; let i = index"
+         [lightbox]="i"
+         [gallery]="galleryId">
+
+      <img [src]="$any(item.data)?.src" [alt]="$any(item.data)?.caption" class="img-fluid rounded">
+      <div class="caption text-center mt-1 text-light small">{{ $any(item.data)?.caption }}</div>
+
+    </div>
+  </div>
+</section>

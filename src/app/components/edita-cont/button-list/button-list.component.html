@@ -1,0 +1,11 @@
+
+<div *ngFor="let button of visibleButtons" class="button-wrapper mb-2">
+  <form [action]="getFileUrl(button.link)" target="_blank">
+    <input 
+      type="submit"
+      class="btn_submit_cad"
+      [attr.download]="isPdf(button.link) ? button.text + '.pdf' : null"
+      [value]="button.text"
+    >
+  </form>
+</div>

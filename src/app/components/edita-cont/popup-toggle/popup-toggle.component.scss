@@ -1,0 +1,95 @@
+.app-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cont{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.popup-config-container {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Melhorando o título */
+.popup-config-container h1 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Estilo do switch */
+.form-switch {
+  position: relative;
+  display: inline-block;
+}
+
+.form-check-input {
+  width: 50px;
+  height: 25px;
+  background-color: #ccc;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+  appearance: none;
+  outline: none;
+  position: relative;
+}
+
+.form-check-input:checked {
+  background-color: #4CAF50;
+}
+
+.form-check-input:checked::before {
+  content: '';
+  position: absolute;
+  left: 25px;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+
+.form-check-input::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-check-label {
+  color: #555;
+  font-size: 1rem;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Transições mais suaves */
+.form-check-input:checked + .form-check-label {
+  color: #4CAF50;
+}

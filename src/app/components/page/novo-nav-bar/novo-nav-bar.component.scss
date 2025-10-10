@@ -1,0 +1,41 @@
+hr{
+border: 1px dashed rgba(0, 0, 0, 1) !important;
+opacity: 1 !important;
+ margin: 0;
+}
+.hrvertical{
+    position: absolute;
+    top: 0;
+    left: 80px;
+    height: 170px; 
+}
+
+.cor{
+    background-color: #E6EAEF;
+}
+
+.principal{
+    padding-left: 80px;
+}
+
+.hrmobile{
+    position: absolute;
+    left: 80px; 
+    top: 122px; 
+    height: 425px; 
+}
+
+.btn-vest{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-inline: 30px;
+}
+
+
+@media (max-width: 1000px) {
+    .hrvertical{
+    height: 120px; 
+}
+}
+

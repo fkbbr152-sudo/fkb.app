@@ -1,0 +1,42 @@
+ <li *ngIf="userRole === 'admin'">
+      <a routerLink="{{rota}}/editorBtn">
+        <span class="icon">🎛️</span>
+        <span class="text">Editor de botões Portal</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink="{{rota}}/editorBtn">
+        <span class="icon">🎛️</span>
+        <span class="text">Editor de botões bibliotecas</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink="{{rota}}/editorBtn">
+        <span class="icon">🎛️</span>
+        <span class="text">Editor de botões CPA</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink="{{rota}}/editorBtn">
+        <span class="icon">🎛️</span>
+        <span class="text">Editor de botões estágios</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink="{{rota}}/editorBtn">
+        <span class="icon">👩‍🎓</span>
+        <span class="text">Gerenciar diplomas</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink="{{rota}}/editorBtn">
+        <span class="icon">📚</span>
+        <span class="text">Editar Cursos</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink="{{rota}}/empresa">
+        <span class="icon">🏣</span>
+        <span class="text">Empresas Conveniadas</span>
+      </a>
+    </li>

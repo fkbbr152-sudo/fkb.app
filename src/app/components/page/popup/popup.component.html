@@ -1,0 +1,13 @@
+<div *ngIf="popupVisible" class="mod">
+    <div class="mod-content">
+      <div class="mod-header">
+        <h5 class="mod-title">ATENÇÃO AVISO</h5>
+        <button class="close-btn" (click)="closePopup()">&times;</button>
+      </div>
+      <div class="mod-body">
+        <!-- Exibe a imagem do popup, se existir -->
+        <img *ngIf="popupImage" [src]="popupImage.path" alt="cheer leaders" />
+      </div>
+    </div>
+  </div>
+  

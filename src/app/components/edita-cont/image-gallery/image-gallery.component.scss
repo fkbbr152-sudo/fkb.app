@@ -1,0 +1,50 @@
+.image-gallery-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.carde {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: white;
+}
+
+.card-img-tope {
+  width: 500px;
+  border-bottom: 1px solid #ddd;
+}
+
+.carde-body {
+  padding: 20px;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+.carde-body img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+
+.imagem{
+  width: 100vw;
+  display: flex !important;
+  gap: 30px;
+}
+
+.imagem img{
+  width: 200px;
+  height: 300px;
+}

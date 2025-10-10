@@ -1,0 +1,20 @@
+.navbar{
+    background-color: #11396A;
+
+}
+
+.nav-link {
+    color: #f0f0f0; /* Altere para a cor desejada */
+}
+
+.nav-link.active, .nav-link:focus{
+    color: #c2c2c2; /* Cor diferente para o link ativo, se desejar */
+}
+
+.nav-link:hover {
+    color: #c3c3c3; /* Cor dos links quando o mouse está sobre eles */
+}
+
+
+
+

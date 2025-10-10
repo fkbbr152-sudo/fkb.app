@@ -1,0 +1,115 @@
+<!-- Cabeçalho -->
+<div class="px-4 ps-lg-5 py-3 cor position-relative">
+  <div class="d-flex principal justify-content-between align-items-center">
+    <img src="fkbvetorizado.svg" alt="Faculdades FKB" style="height: 50px;" />
+
+    <!-- Menu Desktop -->
+    <div class="d-none d-lg-flex gap-3 fw-bold me-4">
+      <a href="#" class="text-decoration-none text-reset" (click)="abrirMenu()">SOU ALUNO</a>
+
+      <div class="dropdown">
+        <a class="dropdown-toggle text-decoration-none text-reset" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          PROFESSORES
+        </a>
+        <ul class="dropdown-menu mt-2">
+          <!-- <li>
+            <a class="dropdown-item cursor-pointer" (click)="abrirBiblioteca()">CONHEÇA NOSSA EQUIPE</a>
+          </li> -->
+          <li>
+            <a class="dropdown-item" target="_blank" href="https://portais.qualinfonet.com.br/fkb/">PORTAL DOS PROFESSORES</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- <a href="#" class="text-decoration-none text-reset" (click)="showAlert('Trabalhe Conosco')">TRABALHE CONOSCO</a> -->
+    </div>
+
+    <!-- Ícone menu Mobile -->
+    <button class="d-lg-none text-decoration-none text-reset fs-2 me-4 btn btn-link" (click)="toggleMenu()">
+      &#9776;
+    </button>
+  </div>
+</div>
+
+<hr />
+<hr class="hrvertical" />
+
+<!-- Menu inferior Desktop -->
+<div class="px-4 ps-lg-5 py-3 cor shadow-sm">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-none ms-5 d-lg-flex gap-3 fw-bold">
+      <a href="#cursos" class="text-decoration-none text-reset">GRADUAÇÃO</a>
+      <!-- <a href="#" class="text-decoration-none text-reset" (click)="showAlert('Pós-Graduação')">PÓS-GRADUAÇÃO</a>
+           <a href="#" class="text-decoration-none text-reset" (click)="showAlert('Cursos Livres')">CURSOS LIVRES</a> -->
+      <a href="#" class="text-decoration-none text-reset" (click)="showAlert('Pesquisas')">PESQUISAS</a>
+
+      <div class="dropdown">
+        <a class="dropdown-toggle text-decoration-none text-reset" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          BIBLIOTECA
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item cursor-pointer" (click)="abrirBiblioteca()">BIBLIOTECA</a>
+          </li>
+          <li>
+            <a class="dropdown-item" target="_blank" href="https://dliportal.zbra.com.br/Login.aspx?key=FKB">BIBLIOTECA DIGITAL</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Botão Vestibular Desktop -->
+    <!-- <a class="d-none d-lg-inline-block btn btn-primary fw-bold px-4 py-3 me-4" href="https://portais.qualinfonet.com.br/fkb/acadweb.modulo.eventos.php?">
+      VESTIBULAR
+    </a> -->
+  </div>
+</div>
+
+<!-- Menu Mobile (Dropdown) -->
+<div *ngIf="menuOpen" id="mobileMenu" class="d-lg-none cor principal pt-0 fw-bold ps-lg-5">
+  <hr class="hrmobile" />
+
+  <!-- <div class="btn-vest">
+    <a class="btn btn-primary w-100 mt-3 py-3" href="https://portais.qualinfonet.com.br/fkb/acadweb.modulo.eventos.php?">
+      VESTIBULAR
+    </a>
+  </div> -->
+
+  <div class="d-flex flex-column gap-3 py-4 px-4">
+    <a href="#" class="text-decoration-none text-reset" (click)="abrirMenu(); toggleMenu()">SOU ALUNO</a>
+
+    <div class="dropdown">
+      <a class="dropdown-toggle text-decoration-none text-reset" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        PROFESSORES
+      </a>
+      <ul class="dropdown-menu show position-static mt-2">
+        <!-- <li>
+          <a class="dropdown-item cursor-pointer" (click)="abrirBiblioteca(); toggleMenu()">CONHEÇA NOSSA EQUIPE</a>
+        </li> -->
+        <li>
+          <a class="dropdown-item" target="_blank" href="https://portais.qualinfonet.com.br/fkb/">PORTAL DOS PROFESSORES</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- <a href="#" class="text-decoration-none text-reset" (click)="showAlert('Trabalhe Conosco'); toggleMenu()">TRABALHE CONOSCO</a> -->
+    <a href="#" class="text-decoration-none text-reset" (click)="showAlert('Graduação'); toggleMenu()">GRADUAÇÃO</a>
+    <!-- <a href="#" class="text-decoration-none text-reset" (click)="showAlert('Pós-Graduação'); toggleMenu()">PÓS-GRADUAÇÃO</a> -->
+    <!-- <a href="#" class="text-decoration-none text-reset" (click)="showAlert('Cursos Livres'); toggleMenu()">CURSOS LIVRES</a> -->
+    <a href="#" class="text-decoration-none text-reset" (click)="showAlert('Pesquisas'); toggleMenu()">PESQUISAS</a>
+
+    <div class="dropdown">
+      <a class="dropdown-toggle text-decoration-none text-reset" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        BIBLIOTECA
+      </a>
+      <ul class="dropdown-menu show position-static mt-2">
+        <li>
+          <a class="dropdown-item cursor-pointer" (click)="abrirBiblioteca(); toggleMenu()">BIBLIOTECA</a>
+        </li>
+        <li>
+          <a class="dropdown-item" target="_blank" href="https://dliportal.zbra.com.br/Login.aspx?key=FKB">BIBLIOTECA DIGITAL</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

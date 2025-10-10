@@ -1,0 +1,20 @@
+<div class="containeer">
+  <div class="left-side"></div>
+
+  <div class="right-side">
+    <div class="login-form">
+      <img src="logofkb.png" alt="Ilustração" class="illustration">
+      <h2>Sistema de Gerenciamento</h2>
+      <form (ngSubmit)="login()">
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" placeholder="Digite o login" required />
+
+        <label for="password">Senha:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Digite a Senha " required>
+
+        <button type="submit" class="login-btn">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+</div>

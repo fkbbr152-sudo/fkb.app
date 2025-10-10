@@ -1,0 +1,73 @@
+<img class="logo" src="logofkb.png" [class.menu-open]="isMenuOpen" [class.menu-closed]="!isMenuOpen">
+<div class="notify">
+    <span class="title">Sistema de gerenciamento</span>
+    <button (click)="toggleMenu()">{{userRole}}</button>
+    <div *ngIf="menuOpen" class="menu">
+        <ul>
+          <li>{{userRole}}</li>
+          <li><a (click)="logout()">⛔ Logout</a></li>
+          <hr class="ln-menu">
+        </ul>
+      </div>
+</div>
+<hr>
+
+<div class="sidebar" [class.active]="isOpen">
+  <button class="toggle-btn" (click)="toggleSidebar()">&#9776;</button>
+  <ul class="menu-list">
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink={{rota}}>
+        <span class="icon">🏠</span>
+        <span class="text">Home</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink="{{rota}}/user">
+        <span class="icon">💁‍♀️</span>
+        <span class="text">Gerenciar Usuários</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'admin' || userRole === 'user'">
+      <a routerLink="{{rota}}/capa">
+        <span class="icon">🖼️</span>
+        <span class="text">Alterar Capa</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink="{{rota}}/popup">
+        <span class="icon">💭</span>
+        <span class="text">Ativar Popup</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'user'">
+      <a routerLink="{{rota}}/dashboard">
+        <span class="icon">📊</span>
+        <span class="text">Dashboard</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink="{{rota}}/editorBtn">
+        <span class="icon">🎛️</span>
+        <span class="text">Editor de botões hero</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink="{{rota}}/insta">
+        <span class="icon">🪶</span>
+        <span class="text">Adicionar Posts</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink="{{rota}}/editaCurso">
+        <span class="icon">🪶</span>
+        <span class="text">Adicionar Curso</span>
+      </a>
+    </li>
+   
+  </ul>
+</div>
+
+<div class="admin-container" [class.menu-open-cont]="isMenuOpen" [class.menu-closed-cont]="!isMenuOpen">
+
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,78 @@
+.footer a {
+    color: #f0f0f0;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer img {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+  }
+  
+  .rod{
+    background-color: #151E36;
+    color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  /* Adicione este código ao seu arquivo sessao-contatos.component.scss */
+
+// Estilos para o conteúdo HTML personalizado dentro do SweetAlert
+:host ::ng-deep .swal-custom-content {
+  text-align: left;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 15px; // Espaço para a barra de rolagem
+}
+
+:host ::ng-deep .contact-entry {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 10px;
+  border-bottom: 1px solid #444; // Linha separadora escura
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+:host ::ng-deep .contact-img-container {
+  flex-shrink: 0;
+}
+
+:host ::ng-deep .contact-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #555;
+}
+
+:host ::ng-deep .contact-details {
+  p {
+    margin: 4px 0;
+    font-size: 0.95rem;
+  }
+  .contact-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+  .contact-title {
+    font-style: italic;
+    color: #ccc;
+    margin-bottom: 10px;
+  }
+  strong {
+    color: #a0cfff;
+  }
+}

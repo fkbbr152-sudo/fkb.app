@@ -1,0 +1,34 @@
+<!-- <div class="image-gallery-container">
+  <h2>Imagem atual</h2>
+  <div class="row1">
+    <div class="col2" *ngFor="let image of images">
+      <div class="carde">
+        <img [src]="image.path" class="card-img-tope" alt="Image" />
+        <div class="carde-body">
+          <button class="btn btn-danger" (click)="deleteImage(image.id)">voltar a imagem anterior</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="imagem" *ngIf="fetchAll; else singleImageTemplate">
+  <div  *ngFor="let image of images">
+    <img [src]="image.path" class="card-img-tope" alt="Image" />
+  </div>
+</div>
+
+<ng-template #singleImageTemplate>
+  <div class="image-gallery-container">
+    <h2>Imagem atual</h2>
+    <div class="row1">
+      <div class="col2" *ngFor="let image of images">
+        <div class="carde">
+          <img [src]="image.path" class="card-img-tope" alt="Image" />
+          <div class="carde-body">
+            <button class="btn btn-danger" (click)="deleteImage(image.id)">voltar a imagem anterior</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

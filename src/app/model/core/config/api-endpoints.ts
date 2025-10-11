@@ -11,5 +11,6 @@ export const API_ENDPOINTS = {
   image: `${environment.apiBaseUrl}/image.php`,
   popup: `${environment.popupBaseUrl}/popup.php`,
   contatos: `${environment.apiBaseUrl}/get_contatos.php`,
-  cursos:`${environment.apiBaseUrl}/course.php`
+  cursos:`${environment.apiBaseUrl}/course.php`,
+  logout: `${environment.apiBaseUrl}/logout.php`
 };

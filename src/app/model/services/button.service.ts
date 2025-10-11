@@ -13,20 +13,21 @@ export class ButtonService {
 
   /**
    * Busca todos os botões.
-   * CORRIGIDO: Adicionado withCredentials para autenticação e catchError para robustez.
+   * CORRIGIDO: Adicionado { withCredentials: true } para autenticação e
+   * catchError para retornar um array vazio e não quebrar a UI.
    */
   getButtons(): Observable<any[]> {
     return this.http.get<any[]>(API_ENDPOINTS.buttons, { withCredentials: true }).pipe(
       catchError(error => {
-        console.error('Erro ao buscar os botões:', error);
-        return of([]); // Retorna um array vazio em caso de erro para não quebrar a UI.
+        console.error('Erro ao buscar os botões (verifique se a API está correta e segura):', error);
+        return of([]); // Retorna um array vazio para não quebrar o .map() no componente.
       })
     );
   }
 
   /**
    * Adiciona um novo botão.
-   * CORRIGIDO: Adicionado withCredentials para autenticação.
+   * CORRIGIDO: Adicionado { withCredentials: true } para autenticação.
    */
   addButton(data: FormData): Observable<any> {
     return this.http.post(API_ENDPOINTS.buttons, data, { withCredentials: true }).pipe(
@@ -39,7 +40,7 @@ export class ButtonService {
 
   /**
    * Atualiza um botão existente.
-   * CORRIGIDO: Adicionado withCredentials para autenticação.
+   * CORRIGIDO: Adicionado { withCredentials: true } para autenticação.
    */
   updateButton(data: FormData): Observable<any> {
     return this.http.post(API_ENDPOINTS.buttons, data, { withCredentials: true }).pipe(
@@ -52,7 +53,7 @@ export class ButtonService {
 
   /**
    * Deleta um botão.
-   * CORRIGIDO: Adicionado withCredentials para autenticação.
+   * CORRIGIDO: Adicionado { withCredentials: true } para autenticação.
    */
   deleteButton(id: number): Observable<any> {
     return this.http.delete(`${API_ENDPOINTS.buttons}?id=${id}`, { withCredentials: true }).pipe(
@@ -65,8 +66,6 @@ export class ButtonService {
 
   /**
    * Atualiza a visibilidade de um botão.
-   * CORRIGIDO: Lógica robusta que busca os dados do botão e reenvia um formulário completo,
-   * compatível com seu script PHP atual.
    */
   updateButtonVisibility(id: number, visible: boolean): Observable<any> {
     // Esta lógica é necessária porque seu PHP espera um formulário completo para a atualização.
@@ -80,7 +79,6 @@ export class ButtonService {
         const formData = new FormData();
         formData.append('id', id.toString());
         formData.append('text', buttonToUpdate.text);
-        // Garante que o link seja enviado para não ser apagado no backend
         formData.append('link', buttonToUpdate.link || ''); 
         formData.append('visible', visible ? '1' : '0');
 

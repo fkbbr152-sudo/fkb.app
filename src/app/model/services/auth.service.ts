@@ -57,7 +57,7 @@ export class AuthService {
   }
   
   logout(): void {
-    this.http.get(`${API_ENDPOINTS.base}logout.php`).subscribe({
+    this.http.get(`${API_ENDPOINTS.base}/logout.php`).subscribe({
       next: () => {
         this.router.navigate(['/login']);
       },

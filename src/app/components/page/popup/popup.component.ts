@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ImageService } from '../../../model/services/image.service';
 import { PopupService } from '../../../model/services/popup.service';
+import { environment } from '../../../model/environments/environments';
 
 @Component({
   selector: 'app-popup',
@@ -20,7 +21,7 @@ import { PopupService } from '../../../model/services/popup.service';
 export class PopupComponent implements OnInit {
   popupVisible = false;
   popupImage: any = null; // Propriedade para armazenar a imagem do popup
-  readonly uploadDir = 'http://localhost/backend_upload/assets/'; // Ajuste conforme necessário
+  readonly uploadDir = `${environment.apiBaseUrl}/backend-login-fkb/assets/`; // Ajuste conforme necessário
 
   constructor(private popupService: PopupService, private imageService: ImageService) {}
 

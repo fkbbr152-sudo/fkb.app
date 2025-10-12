@@ -21,7 +21,7 @@ import { environment } from '../../../model/environments/environments';
 export class PopupComponent implements OnInit {
   popupVisible = false;
   popupImage: any = null; // Propriedade para armazenar a imagem do popup
-  readonly uploadDir = `${environment.apiBaseUrl}/backend-login-fkb/assets/`; // Ajuste conforme necessário
+  readonly uploadDir = `${environment.apiBaseUrl}/assets/`; // Ajuste conforme necessário
 
   constructor(private popupService: PopupService, private imageService: ImageService) {}
 

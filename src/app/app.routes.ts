@@ -20,6 +20,7 @@ export const routes: Routes = [
   {path: 'inicio', component: IndexInicioComponent},
   { path: 'login', component: LoginComponent },
   { path: 'blog', component: InicioBlogComponent },
+  { path: 'pesquisa', component: PesquisaComponent },
   { path: 'artigos/:id', component: ArticleDetailComponent },
   { path: 'user-list', component: UserListComponent },
   {

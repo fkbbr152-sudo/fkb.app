@@ -10,17 +10,14 @@ import { ContatosService } from '../../../model/services/contatos.service';
   selector: 'app-sessao-contatos',
   standalone: true,
   imports: [CommonModule],
-  // providers: [ContatosService], // <-- ESTA LINHA FOI REMOVIDA para usar o serviço global
   templateUrl: './sessao-contatos.component.html',
   styleUrls: ['./sessao-contatos.component.scss']
 })
 export class SessaoContatosComponent implements OnInit {
 
-  // Array para armazenar todos os contatos carregados do banco de dados
   private allStaff: StaffMember[] = [];
-  private isLoading = true; // Para controlar o estado de carregamento
+  private isLoading = true;
 
-  // Mapeamento dos links do HTML para os nomes dos departamentos no DB
   private departmentMap: { [key: string]: string } = {
     'diretoria-geral': 'Diretoria Geral',
     'diretoria-executiva': 'Diretoria Executiva',
@@ -34,23 +31,17 @@ export class SessaoContatosComponent implements OnInit {
     'biblioteca': 'Biblioteca'
   };
 
-  // Injetar o serviço de contatos no construtor
   constructor(private contatosService: ContatosService) {}
 
   ngOnInit(): void {
-    // Carrega os dados assim que o componente é iniciado
     this.contatosService.getContatos().subscribe({
       next: (data) => {
-        // CORREÇÃO: Garante que 'allStaff' seja sempre um array.
-        // Se a API retornar null ou algo que não seja um array, ele se tornará um array vazio [].
         this.allStaff = Array.isArray(data) ? data : [];
-        
         this.isLoading = false;
-        console.log('Contatos carregados com sucesso!');
+        console.log('Contatos carregados:', this.allStaff); // Bom para depuração
       },
       error: (err) => {
         console.error('Erro ao carregar contatos', err);
-        // Boa prática: em caso de erro, também garante que a lista esteja vazia.
         this.allStaff = [];
         this.isLoading = false;
       }
@@ -58,15 +49,8 @@ export class SessaoContatosComponent implements OnInit {
   }
 
   public openAlert(linkType: string): void {
-    // Se os dados ainda estiverem carregando, mostre um alerta de espera
     if (this.isLoading) {
-      Swal.fire({
-        title: 'Carregando...',
-        text: 'Por favor, aguarde enquanto buscamos as informações.',
-        icon: 'info',
-        background: '#0A131D',
-        color: '#f0f0f0'
-      });
+      Swal.fire({ title: 'Carregando...', icon: 'info' });
       return;
     }
 
@@ -75,20 +59,23 @@ export class SessaoContatosComponent implements OnInit {
     let htmlContent = '';
 
     if (departmentName) {
-      // Filtra os funcionários para o departamento clicado
-      // Esta linha agora é segura e não causará mais o erro.
-      const filteredStaff = this.allStaff.filter(
-        person => person.departamento === departmentName
+      
+      // ========================================================================
+      // A CORREÇÃO ESTÁ AQUI
+      // Normalizamos ambas as strings antes de comparar:
+      // .trim() remove espaços em branco no início e no fim.
+      // .toLowerCase() converte tudo para minúsculas para a comparação não falhar.
+      // ========================================================================
+      const filteredStaff = this.allStaff.filter(person => 
+        (person.departamento || '').trim().toLowerCase() === departmentName.trim().toLowerCase()
       );
 
       if (filteredStaff.length > 0) {
-        // Formata os contatos encontrados em HTML
         htmlContent = this.formatContactsToHtml(filteredStaff);
       } else {
         htmlContent = '<p>Nenhum contato encontrado para este departamento.</p>';
       }
     } else {
-      // Caso para links como 'ouvidoria' e 'cape' que não têm dados
       htmlContent = '<p>Informações não disponíveis no momento.</p>';
       if (linkType === 'ouvidoria') title = 'Ouvidoria';
       if (linkType === 'cape') title = 'CAPE';
@@ -106,22 +93,17 @@ export class SessaoContatosComponent implements OnInit {
     });
   }
 
-  /**
-   * Função privada para gerar o HTML a partir de uma lista de contatos.
-   */
   private formatContactsToHtml(contacts: StaffMember[]): string {
+    // ... seu código para formatar o HTML continua aqui, sem alterações ...
     let html = '<div class="text-white">'; 
-
     contacts.forEach(person => {
         html += `
         <div class="d-flex align-items-center p-3 border-bottom border-secondary">
-          
           <div class="flex-shrink-0 me-3">
              <img src="${person.image_url || 'FOTOS_FUN/null.jpg'}" alt="Foto de ${person.nome}"
                   class="rounded-circle border border-2 border-secondary" 
                   style="width: 80px; height: 80px; object-fit: cover;">
           </div>
-          
           <div class="flex-grow-1">
             <p class="h5 fw-bold mb-1">${person.nome}</p>
             <p class="fst-italic text-white-50 mb-2">${person.cargo}</p>
@@ -131,11 +113,8 @@ export class SessaoContatosComponent implements OnInit {
               ${person.ramal ? `<span class="ms-2"><strong>Ramal:</strong> ${person.ramal}</span>` : ''}
             </p>
           </div>
-
-        </div>
-      `;
+        </div>`;
     });
-
     html += '</div>';
     return html;
   }

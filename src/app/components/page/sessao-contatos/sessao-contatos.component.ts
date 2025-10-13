@@ -1,17 +1,16 @@
-import { StaffMember } from './../../../model/types/StaffMember';
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Necessário para diretivas como *ngIf
+import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 
-// Importe o serviço e o modelo de dados que criamos
+// Modelos e Serviços
+import { StaffMember } from './../../../model/types/StaffMember';
 import { ContatosService } from '../../../model/services/contatos.service';
 
 @Component({
   selector: 'app-sessao-contatos',
   standalone: true,
-  // Adicione CommonModule aos imports
   imports: [CommonModule],
-  providers: [ContatosService],
+  // providers: [ContatosService], // <-- ESTA LINHA FOI REMOVIDA para usar o serviço global
   templateUrl: './sessao-contatos.component.html',
   styleUrls: ['./sessao-contatos.component.scss']
 })
@@ -28,12 +27,11 @@ export class SessaoContatosComponent implements OnInit {
     'coordenacao': 'Coordenação',
     'secretaria': 'Secretaria',
     'saae': 'SAAE',
-    'sti': 'Tecnologia da Informação', // Ajuste se o nome no DB for diferente
+    'sti': 'Tecnologia da Informação',
     'marketing': 'Marketing',
     'financeiro': 'Financeiro e Contabilidade',
     'rh': 'Recursos Humanos',
-    'biblioteca': 'Biblioteca' // Exemplo se você adicionar o link da biblioteca
-    // 'ouvidoria' e 'cape' não têm dados na nossa tabela, serão tratados abaixo
+    'biblioteca': 'Biblioteca'
   };
 
   // Injetar o serviço de contatos no construtor
@@ -43,12 +41,17 @@ export class SessaoContatosComponent implements OnInit {
     // Carrega os dados assim que o componente é iniciado
     this.contatosService.getContatos().subscribe({
       next: (data) => {
-        this.allStaff = data;
+        // CORREÇÃO: Garante que 'allStaff' seja sempre um array.
+        // Se a API retornar null ou algo que não seja um array, ele se tornará um array vazio [].
+        this.allStaff = Array.isArray(data) ? data : [];
+        
         this.isLoading = false;
         console.log('Contatos carregados com sucesso!');
       },
       error: (err) => {
         console.error('Erro ao carregar contatos', err);
+        // Boa prática: em caso de erro, também garante que a lista esteja vazia.
+        this.allStaff = [];
         this.isLoading = false;
       }
     });
@@ -73,6 +76,7 @@ export class SessaoContatosComponent implements OnInit {
 
     if (departmentName) {
       // Filtra os funcionários para o departamento clicado
+      // Esta linha agora é segura e não causará mais o erro.
       const filteredStaff = this.allStaff.filter(
         person => person.departamento === departmentName
       );
@@ -92,11 +96,10 @@ export class SessaoContatosComponent implements OnInit {
 
     Swal.fire({
       title: `<strong>${title}</strong>`,
-      html: htmlContent, // Usa a propriedade 'html' em vez de 'text'
+      html: htmlContent,
       icon: 'info',
       width: '600px',
       confirmButtonText: 'FECHAR',
-      // Mantém seu estilo personalizado
       background: '#0A131D',
       color: '#f0f0f0',
       confirmButtonColor: '#007bff'
@@ -106,12 +109,10 @@ export class SessaoContatosComponent implements OnInit {
   /**
    * Função privada para gerar o HTML a partir de uma lista de contatos.
    */
- private formatContactsToHtml(contacts: StaffMember[]): string {
-    // Inicia o container. A classe 'text-white' é importante para o tema escuro do seu SweetAlert.
+  private formatContactsToHtml(contacts: StaffMember[]): string {
     let html = '<div class="text-white">'; 
 
     contacts.forEach(person => {
-        // Cada 'entry' agora usa Flexbox do Bootstrap e tem uma borda inferior.
         html += `
         <div class="d-flex align-items-center p-3 border-bottom border-secondary">
           
@@ -137,5 +138,5 @@ export class SessaoContatosComponent implements OnInit {
 
     html += '</div>';
     return html;
-}
+  }
 }

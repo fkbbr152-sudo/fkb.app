@@ -14,13 +14,14 @@ import { InicioBlogComponent } from './components/blog/inicio-blog/inicio-blog.c
 import { PostFormComponent } from './components/blog/post-form/post-form.component';
 import { ArticleDetailComponent } from './components/blog/editorPosts/article-detail/article-detail.component';
 import { EditaCursoComponent } from './components/edita-cont/edita-curso/edita-curso.component';
+import { PesquisarComponent } from './components/page/pesquisar/pesquisar.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   {path: 'inicio', component: IndexInicioComponent},
   { path: 'login', component: LoginComponent },
   { path: 'blog', component: InicioBlogComponent },
-  { path: 'pesquisa', component: PesquisaComponent },
+  { path: 'pesquisar', component: PesquisarComponent },
   { path: 'artigos/:id', component: ArticleDetailComponent },
   { path: 'user-list', component: UserListComponent },
   {

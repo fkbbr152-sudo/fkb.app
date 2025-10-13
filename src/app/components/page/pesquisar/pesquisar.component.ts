@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-pesquisa',
+  selector: 'app-pesquisar',
   standalone: true,
   imports: [],
-  templateUrl: './pesquisa.component.html',
-  styleUrl: './pesquisa.component.scss'
+  templateUrl: './pesquisar.component.html',
+  styleUrl: './pesquisar.component.scss'
 })
-export class PesquisaComponent {
+export class PesquisarComponent {
  public mostrarAvisoManutencao(): void {
     Swal.fire({
       title: "Em manutenção!",

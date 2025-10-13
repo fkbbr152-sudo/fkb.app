@@ -23,14 +23,16 @@ export class ButtonEditorComponent implements OnInit {
     this.loadButtons();
   }
 
-  loadButtons(): void {
-    this.buttonService.getButtons().subscribe(data => {
-      this.buttons = data.map(b => ({
-        ...b,
-        visible: b.visible !== undefined ? !!b.visible : true
-      }));
-    });
-  }
+loadButtons(): void {
+  this.buttonService.getButtons().subscribe(data => {
+    const safeData = Array.isArray(data) ? data : [];
+    this.buttons = safeData.map(b => ({
+      ...b,
+      visible: b.visible !== undefined ? !!b.visible : true
+    }));
+  });
+}
+
 
   openAddDialog(): void {
     Swal.fire({

@@ -22,15 +22,17 @@ export class ButtonListComponent implements OnInit {
     this.loadButtons();
   }
 
-  loadButtons(): void {
-    this.buttonService.getButtons().subscribe(data => {
-      this.buttons = data.map(b => ({
-        ...b,
-        visible: b.visible !== undefined ? !!b.visible : true
-      }));
-      this.filterVisibleButtons();
-    });
-  }
+loadButtons(): void {
+  this.buttonService.getButtons().subscribe(data => {
+    const safeData = Array.isArray(data) ? data : []; // evita erro caso venha null
+    this.buttons = safeData.map(b => ({
+      ...b,
+      visible: b.visible !== undefined ? !!b.visible : true
+    }));
+    this.filterVisibleButtons?.(); // chamada protegida
+  });
+}
+
 
   filterVisibleButtons(): void {
     this.visibleButtons = this.buttons.filter(b => b.visible);

@@ -2,8 +2,9 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { LIGHTBOX_CONFIG, LightboxConfig } from 'ng-gallery/lightbox';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { loadingInterceptor } from './model/interceptors/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,10 +15,11 @@ export const appConfig: ApplicationConfig = {
         exitAnimationTime: 1000
       } as LightboxConfig
     },
+
     
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([loadingInterceptor])),
     provideAnimations(),
   ]
 };

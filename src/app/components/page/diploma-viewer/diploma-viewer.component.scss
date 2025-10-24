@@ -1,0 +1,78 @@
+/* Garante que o body e html ocupem toda a tela para o fundo funcionar */
+:host {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* Ocupa toda a altura da viewport */
+  overflow: hidden;
+  /* Evita barras de rolagem indesejadas */
+
+  /* FIX 1: 'isolation: isolate' cria um novo contexto de empilhamento.
+    Isso faz com que o 'z-index: -1' do blur funcione 
+    corretamente DENTRO deste componente.
+  */
+  isolation: isolate;
+}
+
+/* FIX 2: Força a navbar a ser transparente e a ficar 
+  em uma camada ACIMA do blur.
+*/
+:host ::ng-deep app-novo-nav-bar {
+  background: transparent !important;
+  background-color: transparent !important;
+  /* Dupla garantia */
+  position: relative;
+  z-index: 10;
+  /* Garante que a navbar fique acima do blur */
+}
+
+.background-blur {
+  background-image: url('https://static.qualinfo.net.br/_acadweb.imagens/logo/bg_body_qualinfo_diploma_digital.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  filter: blur(7px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* FIX 3: Com 'isolation: isolate' no :host, o z-index: -1
+    coloca o blur atrás dos outros filhos (navbar, iframe),
+    que é exatamente o que queremos.
+  */
+  z-index: -1;
+  transform: scale(1.1);
+  /* Evita bordas brancas causadas pelo blur */
+}
+
+iframe {
+  border: none;
+  /* FIX 4: Garante que o iframe também fique acima do blur */
+  position: relative;
+  z-index: 5;
+  /* Acima do blur (-1), abaixo da navbar (10) */
+
+  /* Atenção: A página DENTRO do iframe (seu iframeSrc) 
+    também precisa ter um fundo transparente.
+  */
+  background: transparent;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background: #0000009e;
+  padding: 1rem 0;
+  /* FIX 5: Aumenta o z-index para ficar acima de tudo */
+  z-index: 20;
+}
+
+.logo {
+  width: 10em;
+  height: auto;
+}

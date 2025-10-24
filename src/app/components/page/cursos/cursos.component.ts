@@ -32,7 +32,7 @@ export class CursosComponent implements OnInit {
     );
     this.tecnico$ = courses$.pipe(
       map(courses => courses.filter(c => c.categoria === 'tecnico'))
-    );
+    );  
   }
 
   /**

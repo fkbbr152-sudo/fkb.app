@@ -1,0 +1,71 @@
+.container {
+  max-width: 960px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.search-box {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-box input {
+  flex-grow: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+}
+
+.search-box button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.results-table th, .results-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.results-table th {
+  background-color: #337ab7;
+  color: white;
+}
+
+.accordion .panel {
+  margin-bottom: 10px;
+  border: 1px solid #337ab7;
+  border-radius: 4px;
+}
+
+.panel-heading {
+  background-color: #337ab7;
+  color: white;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 3px 3px 0 0;
+}
+
+.panel-title {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.panel-body {
+  padding: 15px;
+  display: none; /* Escondido por padrão */
+  border-top: 1px solid #337ab7;
+}
+
+.panel-body.show {
+  display: block; /* Mostra o conteúdo quando a classe 'show' é aplicada */
+}

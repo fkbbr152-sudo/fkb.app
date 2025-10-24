@@ -15,6 +15,9 @@ import { PostFormComponent } from './components/blog/post-form/post-form.compone
 import { ArticleDetailComponent } from './components/blog/editorPosts/article-detail/article-detail.component';
 import { EditaCursoComponent } from './components/edita-cont/edita-curso/edita-curso.component';
 import { PesquisarComponent } from './components/page/pesquisar/pesquisar.component';
+import { DiplomaListComponent } from './components/page/diploma-list/diploma-list.component';
+import { DiplomaViewerComponent } from './components/page/diploma-viewer/diploma-viewer.component';
+import { DouComponent } from './components/page/dou/dou.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -24,6 +27,10 @@ export const routes: Routes = [
   { path: 'pesquisar', component: PesquisarComponent },
   { path: 'artigos/:id', component: ArticleDetailComponent },
   { path: 'user-list', component: UserListComponent },
+  { path: 'diploma', component: DouComponent},
+  { path: 'diploma-list', component: DiplomaListComponent},
+  { path: 'diploma-viewer', component: DiplomaViewerComponent},
+
   {
     path: 'admin',
     component: PesquisaComponent,
@@ -53,5 +60,5 @@ export const routes: Routes = [
     ],
   },
 
-  { path: '**', redirectTo: 'login' },
+  { path: '**', redirectTo: '/' },
 ];

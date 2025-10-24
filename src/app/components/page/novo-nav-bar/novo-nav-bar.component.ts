@@ -107,7 +107,7 @@ export class NovoNavBarComponent {
         { num: 4, desc: 'Estatuto da FKB', link: 'arquivos/biblioteca/doc_CPA/3. Estatuto FKB  2019.pdf' },
         { num: 5, desc: 'Lei nº 10.861/2004\nSistema Nacional de Avaliação\nda Educação Superior (Sinaes)', link: 'arquivos/biblioteca/doc_CPA/4. Lei SINAES nº 10.861-2004.pdf' },
       ],
-      'DIPLOMAS': ['2ª via', 'Verificação de autenticidade'],
+      'DIPLOMAS': [{num: 1, desc: 'Consultar diplomas', link: '/diploma'}],
     };
   }
 

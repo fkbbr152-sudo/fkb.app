@@ -1,0 +1,60 @@
+<div class="container">
+  <form (submit)="performSearch()">
+    <div class="search-box">
+      <input 
+        type="text" 
+        id="campo" 
+        name="nome" 
+        placeholder="Digite seu nome..."
+        [(ngModel)]="searchTerm">
+      <button type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="searchResults.length > 0">
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>NOME</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let result of searchResults">
+          <td>{{ result.id }}</td>
+          <td>{{ result.nome }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <br>
+
+  <div class="accordion">
+    <div class="panel" *ngFor="let course of courses">
+      <div class="panel-heading" (click)="toggleAccordion(course.id)">
+        <h4 class="panel-title">{{ course.title }}</h4>
+      </div>
+      <div class="panel-body" [class.show]="activeAccordionPanel === course.id">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let diploma of course.diplomas">
+              <td>{{ diploma.id }}</td>
+              <td>{{ diploma.nome }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

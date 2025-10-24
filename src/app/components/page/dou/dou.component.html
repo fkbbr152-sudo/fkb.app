@@ -1,0 +1,79 @@
+<app-novo-nav-bar />
+<div class="dou-container">
+  <h1 class="title">Diploma</h1>
+
+  <div class="actions">
+    <button class="btn btn-blue" (click)="showAlert()">Consulta retirada</button>
+    <a class="btn btn-green" href="/diploma-viewer">Emitir Diploma Digital</a>
+  </div>
+
+  <div class="search-card">
+    <label for="cpfInput">Digite seu CPF</label>
+    <div class="search-group">
+      <input
+        id="cpfInput"
+        type="text"
+        placeholder="000.000.000-00"
+        [value]="cpfInput()"
+        (input)="onCpfInput($event)"
+      />
+      <button class="btn btn-blue" (click)="onSearch()">Pesquisar</button>
+    </div>
+
+    <div *ngIf="error()" class="error-msg">{{ error() }}</div>
+  </div>
+
+  <div class="result-card">
+    <h2>Resultado da Consulta</h2>
+    <hr />
+
+    <div class="result-content">
+      <!-- Estado de carregamento -->
+      <p *ngIf="loading()">Carregando...</p>
+
+      <!-- Estado inicial -->
+      <p *ngIf="!loading() && !apiResponse() && !error()">Aguardando consulta...</p>
+
+      <!-- Erro -->
+      <p *ngIf="error()" class="error-msg">{{ error() }}</p>
+
+      <!-- Resultado -->
+      <div *ngIf="apiResponse() && apiResponse()?.student">
+        <p><strong>Aluno:</strong> {{ apiResponse()?.student?.name }}</p>
+        <p><strong>CPF:</strong> {{ apiResponse()?.student?.cpf }}</p>
+
+        <!-- Lista de diplomas -->
+        <div class="diploma-list" *ngIf="apiResponse()?.diplomas?.length">
+          <h3>Diplomas Encontrados:</h3>
+
+          <div
+            class="diploma-card"
+            *ngFor="let diploma of apiResponse()?.diplomas"
+          >
+            <p><strong>Curso:</strong> {{ diploma.curso }}</p>
+            <p><strong>IES Expedidora:</strong> {{ diploma.iesExpedidora || '-' }}</p>
+            <p><strong>IES Registradora:</strong> {{ diploma.iesRegistradora || '-' }}</p>
+            <p><strong>Data de Ingresso:</strong> {{ diploma.dataIngresso || '-' }}</p>
+            <p><strong>Data de Conclusão:</strong> {{ diploma.dataConclusao || '-' }}</p>
+            <p><strong>Data de Expedição:</strong> {{ diploma.dataExpedicaoDiploma || '-' }}</p>
+            <p><strong>Data de Registro:</strong> {{ diploma.dataRegistroDiploma || '-' }}</p>
+            <p><strong>Nº Expedição:</strong> {{ diploma.numeroExpedicao || '-' }}</p>
+            <p><strong>Nº Registro:</strong> {{ diploma.numeroRegistro || '-' }}</p>
+            <p><strong>Nº Diploma:</strong> {{ diploma.numeroDiploma || '-' }}</p>
+            <p><strong>Publicação no DOU:</strong> {{ diploma.dataPublicacaoDOU || '-' }}</p>
+            <p><strong>Retirou Diploma:</strong> {{ diploma.retirouDiploma || 'NÃO' }}</p>
+
+            <a
+              *ngIf="diploma.linkPublicacao"
+              [href]="diploma.linkPublicacao"
+              target="_blank"
+              class="link-dou"
+            >
+              Ver publicação no DOU
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

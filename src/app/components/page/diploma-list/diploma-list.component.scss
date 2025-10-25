@@ -1,71 +1,181 @@
+// --- Estilo de Fundo da Página ---
+:host {
+  display: block;
+  background-color: #f4f7f6; // Um cinza bem claro para o fundo
+  min-height: 100vh;
+  padding-bottom: 2rem; // Garante um espaço no final
+}
+
+// --- Navegação Breadcrumb (AJUSTADA) ---
+.breadcrumb-nav {
+  // Removemos background, shadow e border
+  padding: 1.5rem 2rem 0; // Aumentamos padding superior, removemos inferior
+}
+
+.breadcrumb-container {
+  max-width: 90vw; // Mantém o alinhamento com o card
+  margin: 0 auto;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.breadcrumb-link {
+  color: #007bff;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.breadcrumb-separator {
+  margin: 0 0.5rem;
+}
+
+.breadcrumb-active {
+  font-weight: 500;
+  color: #343a40;
+}
+
+
+// --- Card Principal ---
 .container {
-  max-width: 960px;
-  margin: 20px auto;
-  font-family: Arial, sans-serif;
+  max-width: 90vw;
+  margin: 1rem auto 2rem; // Diminuímos a margem superior para aproximar do breadcrumb
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+// --- Título da Página ---
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 1rem;
+}
+
+/* --- Barra de Busca Melhorada --- */
 .search-box {
-  display: flex;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  margin-bottom: 2rem;
+  input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    }
+  }
 }
 
-.search-box input {
-  flex-grow: 1;
-  border: none;
-  padding: 10px;
-  outline: none;
-}
-
-.search-box button {
-  background-color: #f0f0f0;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-}
-
+/* --- Tabela com Estilo Profissional --- */
 .results-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.results-table th, .results-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  border-collapse: collapse; // Remove bordas duplas
   text-align: left;
+
+  thead th {
+    background-color: #f8f9fa; // Um cinza bem claro para o cabeçalho
+    color: #495057;
+    font-weight: 600;
+    padding: 14px 16px;
+    border-bottom: 2px solid #dee2e6;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s;
+
+    // Efeito "zebra" para melhor legibilidade
+    &:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    // Efeito de hover para destacar a linha
+    &:hover {
+      background-color: #e9ecef;
+    }
+  }
+
+  tbody td {
+    padding: 14px 16px; // Adiciona "respiração" às células
+    color: #343a40;
+    font-size: 15px;
+    vertical-align: middle;
+
+    // Estilo para o ID, deixando-o menos proeminente
+    &:first-child {
+      font-weight: 500;
+      color: #6c757d;
+      width: 10%; // Define uma largura menor para o ID
+    }
+  }
 }
 
-.results-table th {
-  background-color: #337ab7;
-  color: white;
+/* --- Controles de Paginação Modernos --- */
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
 }
 
-.accordion .panel {
-  margin-bottom: 10px;
-  border: 1px solid #337ab7;
-  border-radius: 4px;
+.page-info {
+  font-weight: 500;
+  font-size: 14px;
+  color: #6c757d;
 }
 
-.panel-heading {
-  background-color: #337ab7;
-  color: white;
-  padding: 15px;
+.pagination-button {
+  padding: 8px 16px;
+  border: 1px solid #dcdcdc;
+  background-color: #ffffff;
+  color: #007bff;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 3px 3px 0 0;
+  font-weight: 600;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background-color: #007bff;
+    color: #ffffff;
+    border-color: #007bff;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #f8f9fa;
+    color: #adb5bd;
+    border-color: #e9ecef;
+  }
 }
 
-.panel-title {
-  margin: 0;
-  font-size: 1.1em;
+/* --- Mensagens de Estado (Loading, Erro, Vazio) --- */
+.loading-state, .error-state, .no-results {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6c757d;
+  font-size: 16px;
 }
 
-.panel-body {
-  padding: 15px;
-  display: none; /* Escondido por padrão */
-  border-top: 1px solid #337ab7;
+.error-state {
+  color: #dc3545; // Cor de erro
+  font-weight: 500;
 }
 
-.panel-body.show {
-  display: block; /* Mostra o conteúdo quando a classe 'show' é aplicada */
-}

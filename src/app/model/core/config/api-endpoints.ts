@@ -13,5 +13,6 @@ export const API_ENDPOINTS = {
   contatos: `${environment.apiBaseUrl}/get_contatos.php`,
   cursos:`${environment.apiBaseUrl}/course.php`,
   logout: `${environment.apiBaseUrl}/logout.php`,
-  dou: `${environment.apiBaseUrl}/diplomas.php`
+  dou: `${environment.apiBaseUrl}/diplomas.php`,
+  diplomasParaRetirar: `${environment.apiBaseUrl}/diplomas_retirar.php`
 };

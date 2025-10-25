@@ -4,50 +4,18 @@ import { ApiResponse } from '../../../model/types/dou';
 import { DouService } from '../../../model/services/dou.service';
 import { CommonModule } from '@angular/common';
 import { NovoNavBarComponent } from "../novo-nav-bar/novo-nav-bar.component";
-import Swal from 'sweetalert2';
-import { DiplomaListComponent } from '../diploma-list/diploma-list.component';
 
 @Component({
   selector: 'app-dou',
   standalone: true,
-  imports: [CommonModule, NovoNavBarComponent, DiplomaListComponent],
+  imports: [CommonModule, NovoNavBarComponent],
   templateUrl: './dou.component.html',
   styleUrl: './dou.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DouComponent {
   private apiService = inject(DouService);
-  // 1. Injetar o ViewContainerRef
-  private viewContainerRef = inject(ViewContainerRef);
 
-  showAlert() {
-    Swal.fire({
-      title: 'Lista de Diplomas', // É bom ter um título
-      html: '<div id="diploma-list-container"></div>', // 2. Usar um placeholder
-      confirmButtonText: 'OK',
-      showCloseButton: true,
-      width: '40vw', // Um pouco mais largo para acomodar uma lista
-
-      didOpen: () => {
-        // 3. Executar quando o modal abrir
-        const container = document.getElementById('diploma-list-container');
-        if (container) {
-          // Limpa qualquer componente anterior
-          this.viewContainerRef.clear();
-
-          // 4. Criar a instância do componente
-          const componentRef = this.viewContainerRef.createComponent(DiplomaListComponent);
-
-          // 6. Anexar o componente ao DOM do modal
-          container.appendChild(componentRef.location.nativeElement);
-        }
-      },
-      willClose: () => {
-        // 7. Destruir o componente quando o modal fechar (evita memory leak)
-        this.viewContainerRef.clear();
-      }
-    });
-  }
 
   // Sinais para gerenciar o estado do componente
   cpfInput = signal(''); // Sinal para o valor do input CPF

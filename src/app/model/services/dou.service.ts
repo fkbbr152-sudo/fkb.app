@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { ApiResponse } from '../types/dou';
 import { API_ENDPOINTS } from '../core/config/api-endpoints';
+import { DiplomaParaRetirar } from '../types/diplomas-retirar';
 
 @Injectable({
   providedIn: 'root'
@@ -68,5 +69,9 @@ private http = inject(HttpClient);
     }
     console.error(errorMessage); // Loga o erro no console
     return throwError(() => new Error(errorMessage)); // Retorna o erro como Observable
+  }
+
+  getDiplomasParaRetirar(): Observable<DiplomaParaRetirar[]> {
+    return this.http.get<DiplomaParaRetirar[]>(API_ENDPOINTS.diplomasParaRetirar);
   }
 }

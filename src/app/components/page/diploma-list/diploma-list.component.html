@@ -1,60 +1,79 @@
-<div class="container">
-  <form (submit)="performSearch()">
-    <div class="search-box">
-      <input 
-        type="text" 
-        id="campo" 
-        name="nome" 
-        placeholder="Digite seu nome..."
-        [(ngModel)]="searchTerm">
-      <button type="submit">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-        </svg>
-      </button>
-    </div>
-  </form>
+<app-novo-nav-bar />
 
-  <div *ngIf="searchResults.length > 0">
+<!-- NAVEGAÇÃO BREADCRUMB ADICIONADA -->
+<nav class="breadcrumb-nav">
+  <div class="breadcrumb-container">
+    <a [routerLink]="['/diploma']" class="breadcrumb-link">Diplomas</a>
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-active">Lista para Retirada</span>
+  </div>
+</nav>
+
+<div class="container">
+  <!-- Título da Página -->
+  <h1 class="page-title">Diplomas para Retirada</h1>
+
+  <!-- Caixa de Busca -->
+  <div class="search-box">
+    <input
+      type="text"
+      placeholder="Filtrar por nome do aluno..."
+      [(ngModel)]="searchTerm"
+      (input)="performSearch()"
+    >
+  </div>
+
+  <!-- Estados de Carregamento e Erro -->
+  <div *ngIf="isLoading" class="loading-state">
+    <p>Carregando diplomas...</p>
+  </div>
+  <div *ngIf="error" class="error-state">
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Tabela Principal de Diplomas -->
+  <ng-container *ngIf="!isLoading && !error">
     <table class="results-table">
       <thead>
         <tr>
           <th>ID</th>
-          <th>NOME</th>
+          <th>Nome do Aluno</th>
+          <th>Curso</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let result of searchResults">
-          <td>{{ result.id }}</td>
-          <td>{{ result.nome }}</td>
+        <tr *ngFor="let diploma of paginatedDiplomas">
+          <td>{{ diploma.id }}</td>
+          <td>{{ diploma.nome_aluno }}</td>
+          <td>{{ diploma.nome_curso }}</td>
         </tr>
       </tbody>
     </table>
-  </div>
-  
-  <br>
 
-  <div class="accordion">
-    <div class="panel" *ngFor="let course of courses">
-      <div class="panel-heading" (click)="toggleAccordion(course.id)">
-        <h4 class="panel-title">{{ course.title }}</h4>
-      </div>
-      <div class="panel-body" [class.show]="activeAccordionPanel === course.id">
-        <table class="results-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let diploma of course.diplomas">
-              <td>{{ diploma.id }}</td>
-              <td>{{ diploma.nome }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- Mensagem para quando não há resultados -->
+    <div *ngIf="filteredDiplomas.length === 0" class="no-results">
+      <p>Nenhum diploma encontrado para os critérios informados.</p>
     </div>
-  </div>
+
+    <!-- Controles de Paginação -->
+    <div *ngIf="filteredDiplomas.length > 0" class="pagination-controls">
+      <button 
+        class="pagination-button"
+        (click)="previousPage()" 
+        [disabled]="currentPage === 1">
+        Anterior
+      </button>
+      
+      <span class="page-info">
+        Página {{ currentPage }} de {{ totalPages }}
+      </span>
+      
+      <button 
+        class="pagination-button"
+        (click)="nextPage()" 
+        [disabled]="currentPage === totalPages">
+        Próximo
+      </button>
+    </div>
+  </ng-container>
 </div>
